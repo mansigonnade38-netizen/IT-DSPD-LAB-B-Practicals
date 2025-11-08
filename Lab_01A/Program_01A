@@ -1,0 +1,27 @@
+//Write a program to accept 'n' numbers into an array and then calculate the sum of numbers present in odd positions and even positions respectively.	
+#include <stdio.h>
+
+int main() {
+    int a[50], n, i;
+    int sumOdd = 0, sumEven = 0;
+
+    printf("Enter how many numbers: ");
+    scanf("%d", &n);
+
+    printf("Enter the numbers:\n");
+    for(i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    for(i = 0; i < n; i++) {
+        if(i % 2 == 0)     
+            sumOdd = sumOdd + a[i];
+        else               
+            sumEven = sumEven + a[i];
+    }
+
+    printf("Sum of odd positions = %d\n", sumOdd);
+    printf("Sum of even positions = %d\n", sumEven);
+
+    return 0;
+}
