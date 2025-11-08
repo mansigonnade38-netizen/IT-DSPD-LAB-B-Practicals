@@ -1,0 +1,113 @@
+//Design, Develop and Implement a menu driven Program in C for the following operations on STACK of Integers (Array Implementation of Stack with maximum size MAX) 
+// a. Push an Element on to Stack 
+// b. Pop an Element from Stack 
+// c. Demonstrate how Stack can be used to check Palindrome 
+// d. Demonstrate Overflow and Underflow situations on Stack 
+// e. Display the status of Stack 
+// f. Exit 
+// Support the program with appropriate functions for each of the above operations.
+
+#include <stdio.h>
+#include <string.h>
+#define MAX 50
+
+int stack[MAX];
+int top = -1;
+
+void push(int x) {
+    if(top == MAX - 1) {
+        printf("\nStack Overflow!\n");
+    } else {
+        stack[++top] = x;
+        printf("\n%d pushed to stack.\n", x);
+    }
+}
+
+void pop() {
+    if(top == -1) {
+        printf("\nStack Underflow!\n");
+    } else {
+        printf("\n%d popped from the stack.\n", stack[top--]);
+    }
+}
+
+void display() {
+	int i;
+    if(top == -1) {
+        printf("\nStack is Empty.\n");
+    } else {
+        printf("\nStack elements are:\n");
+        for(i = top; i >= 0; i--) {
+            printf("%d\n", stack[i]);
+        }
+    }
+}
+
+void checkPalindrome() {
+    char str[50], rev[50];
+    int i, len;
+    top = -1; 
+
+    printf("\nEnter a string: ");
+    scanf("%s", str);
+
+    len = strlen(str);
+
+    for(i = 0; i < len; i++) {
+        push(str[i]);
+    }
+
+    for(i = 0; i < len; i++) {
+        rev[i] = stack[top--];
+    }
+    rev[len] = '\0';
+
+    if(strcmp(str, rev) == 0)
+        printf("\n%s is a Palindrome.\n", str);
+    else
+        printf("\n%s is Not a Palindrome.\n", str);
+}
+
+int main() {
+    int choice, value;
+
+    while(1) {
+        printf("\n--- STACK MENU ---");
+        printf("\n1. Push");
+        printf("\n2. Pop");
+        printf("\n3. Check Palindrome");
+        printf("\n4. Display Stack");
+        printf("\n5. Exit");
+
+        printf("\n\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                printf("Enter value to push: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+            
+            case 2:
+                pop();
+                break;
+
+            case 3:
+                checkPalindrome();
+                break;
+
+            case 4:
+                display();
+                break;
+
+            case 5:
+                return 0;
+
+            default:
+                printf("\nInvalid Choice!\n");
+        }
+    }
+}
+
+
